@@ -1,0 +1,11 @@
+type Query {
+    helloWorld: String!
+    getUser(id: ID!): User
+    getUsers(limit: Int): [User]
+}
+
+type Mutation {
+    creteUser(input: UserInput): User
+    updateUser(input: UserInput): User
+    deleteUser(id: ID!): String
+}
