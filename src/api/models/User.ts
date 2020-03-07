@@ -1,5 +1,6 @@
-import { prop, getModelForClass } from '@typegoose/typegoose'
+import { prop, getModelForClass, modelOptions } from '@typegoose/typegoose'
 
+@modelOptions({ options: { customName: 'Users' } })
 class UserSchema {
   @prop()
   name?: string
@@ -7,4 +8,4 @@ class UserSchema {
 
 const User = getModelForClass(UserSchema)
 
-export default User
+export { User, UserSchema }

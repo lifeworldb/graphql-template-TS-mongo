@@ -5,7 +5,7 @@ type Query {
 }
 
 type Mutation {
-    creteUser(input: UserInput): User
+    createUser(input: UserInput): User
     updateUser(input: UserInput): User
     deleteUser(id: ID!): String
 }

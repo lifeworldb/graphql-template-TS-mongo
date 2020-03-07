@@ -1,17 +1,17 @@
-import mongoose from 'mongoose'
+import mongoose, { Mongoose } from 'mongoose'
 import { environment } from '@config/environment'
 
 mongoose.Promise = global.Promise
 
-const connectToMongo = () => {
+const connectToMongo = (): Promise<Mongoose> => {
   return new Promise((resolve, reject) => {
-    mongoose.connect(`mongodb://${environment.mongo_host}:${environment.mongo_port}/${environment.mongo_db}`,
-      {
+    mongoose
+      .connect(`mongodb://${environment.mongoHost}:${environment.mongoPort}/${environment.mongoDb}`, {
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
       })
-      .then((result) => resolve())
-      .catch((e) => reject(e))
+      .then(() => resolve())
+      .catch(e => reject(e))
   })
 }
 

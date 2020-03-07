@@ -15,20 +15,22 @@ const main = new ApolloServer({
   schema,
   introspection: environment.apollo.introspection,
   playground: environment.apollo.introspection,
-  validationRules: [depthLimit(7)]
+  validationRules: [depthLimit(7)],
 })
 
 app.use('*', cors())
 app.use(compression())
 main.applyMiddleware({
-  app
+  app,
 })
 
 const httpServer = createServer(app)
 
-setup.run()
-  .then((result: any) => {
-    httpServer.listen({ port: environment.port},
-      ():void => console.log(`🚀  Server ready at ${main.graphqlPath}. `))
+setup
+  .run()
+  .then(() => {
+    httpServer.listen({ port: environment.port }, (): void => console.log(`🚀  Server ready at ${main.graphqlPath}. `))
   })
-  .catch(() => { process.exit(1) })
+  .catch(() => {
+    process.exit(1)
+  })
