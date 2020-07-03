@@ -8,10 +8,17 @@ interface Environment {
     introspection: boolean
     playground: boolean
   }
-  mongoHost: string
-  mongoPort: number | string
-  mongoDb: string
+  mongo: {
+    atlas: boolean
+    host: string
+    port: number | string
+    db: string
+    user: string
+    pass: string
+  }
   port: number | string
+  tz: string
+  googleLogging: boolean
 }
 
 export const environment: Environment = {
@@ -19,8 +26,15 @@ export const environment: Environment = {
     introspection: process.env.APOLLO_INTROSPECTION === 'true',
     playground: process.env.APOLLO_PLAYGROUND === 'true',
   },
-  mongoHost: process.env.MONGO_HOST || defaultHostMongo,
-  mongoPort: process.env.MONGO_PORT || defaultPortMongo,
-  mongoDb: process.env.MONGO_DB || defaultDatabaseMongo,
+  mongo: {
+    atlas: process.env.MONGO_ATLAS === 'true',
+    host: process.env.MONGO_HOST || defaultHostMongo,
+    port: process.env.MONGO_PORT || defaultPortMongo,
+    db: process.env.MONGO_DB || defaultDatabaseMongo,
+    user: process.env.MONGO_USR || '',
+    pass: process.env.MONGO_PAS || '',
+  },
   port: process.env.PORT || defaultPort,
+  tz: process.env.TZ || '',
+  googleLogging: process.env.GOOGLE_LOGGING === 'true',
 }

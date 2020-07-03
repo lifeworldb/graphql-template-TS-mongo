@@ -2,11 +2,15 @@ import mongoose, { Mongoose } from 'mongoose'
 import { environment } from '@config/environment'
 
 mongoose.Promise = global.Promise
+mongoose.set('useFindAndModify', false)
+
+const atlas = `mongodb+srv://${environment.mongo.user}:${environment.mongo.pass}@${environment.mongo.host}/${environment.mongo.db}?retryWrites=true&w=majority`
+const other = `mongodb://${environment.mongo.host}:${environment.mongo.port}/${environment.mongo.db}`
 
 const connectToMongo = (): Promise<Mongoose> => {
   return new Promise((resolve, reject) => {
     mongoose
-      .connect(`mongodb://${environment.mongoHost}:${environment.mongoPort}/${environment.mongoDb}`, {
+      .connect(environment.mongo.atlas ? atlas : other, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       })

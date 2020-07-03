@@ -51,6 +51,7 @@
         "typescript": "^3.8.3"
     },
     "dependencies": {
+        "@google-cloud/logging-winston": "^3.0.6",
         "@graphql-toolkit/file-loading": "^0.9.7",
         "@graphql-toolkit/schema-merging": "^0.9.7",
         "@typegoose/typegoose": "^6.4.0",
@@ -68,8 +69,11 @@
         "import-modules": "^2.0.0",
         "listr": "^0.14.3",
         "lodash": "^4.17.15",
+        "moment": "^2.27.0",
+        "moment-timezone": "^0.5.31",
         "mongoose": "^5.9.3",
         "node-emoji": "^1.10.0",
-        "tsconfig-paths": "^3.9.0"
+        "tsconfig-paths": "^3.9.0",
+        "winston": "^3.3.3"
     }
 }
